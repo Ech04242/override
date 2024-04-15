@@ -1,0 +1,13 @@
+level00@OverRide:~$ objdump -R level00 
+
+level00:     file format elf32-i386
+
+DYNAMIC RELOCATION RECORDS
+OFFSET   TYPE              VALUE 
+08049ff0 R_386_GLOB_DAT    __gmon_start__
+0804a000 R_386_JUMP_SLOT   printf
+0804a004 R_386_JUMP_SLOT   puts
+0804a008 R_386_JUMP_SLOT   system
+0804a00c R_386_JUMP_SLOT   __gmon_start__
+0804a010 R_386_JUMP_SLOT   __libc_start_main
+0804a014 R_386_JUMP_SLOT   __isoc99_scanf
