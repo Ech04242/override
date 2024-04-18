@@ -5,6 +5,3 @@ int main()
 {
     printf("value env = %p\n", getenv("exploit"));
 }
-
-
-/* Compile with flag -m32 */
