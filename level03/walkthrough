@@ -1,1 +1,31 @@
-input : 322424827
+# level03
+
+Nous nous retrouvons ici avec une fonction test, et un appel avec ces paramètres :
+
+```c
+  test(userInput, 322424845);
+```
+
+Au départ de ce test, nous avons une différence entre ``322424845`` et l'entrée de l'utilisateur.
+
+Si la différence est égale à l'une de ces valeurs : ``1->9 || 16->21``
+    alors le programme va exécuter un code de décryptage avec une valeur fixe.
+
+Si cette valeur-là n'est pas trouvée, alors ce sera un décryptage aléatoire.
+
+```bash
+for i in {1..9}; do (python -c "print(322424845 - $i)"; cat) | ./level03; done
+for i in {16..21}; do (python -c "print(322424845 - $i)"; cat) | ./level03; done
+```
+
+Nous avons donc une correspondance avec la valeur 322424845 - 18, ce qui donne 322424827
+
+```bash
+level03@OverRide:~$ ./level03 
+***********************************
+*		level03		**
+***********************************
+Password:322424827
+$ cat /home/users/level04/.pass
+kgv3tkEb9h2mLkRsPkXRfc2mHbjMxQzvb2FrgKkf
+```
