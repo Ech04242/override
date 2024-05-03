@@ -2,17 +2,19 @@
 
 int verify_user_name(char* name) {
     char* user = "dat_wil";
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 7; i++) {
         if (user[i] != name[i])
             return 1;
+    }
     return 0;
 }
 
 int verify_user_pass(char* password) {
     char* pass = "admin";
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++) {
         if (pass[i] != password[i])
             return 1;
+    }
     return 0;
 }
 
