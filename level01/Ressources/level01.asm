@@ -1,57 +1,120 @@
-0x80484d0 <main>        push%ebp
-0x80484d1 <main+1>      mov%esp,%ebp
-0x80484d3 <main+3>      push%edi
-0x80484d4 <main+4>      push%ebx
-0x80484d5 <main+5>      and$0xfffffff0,%esp
-0x80484d8 <main+8>      sub$0x60,%esp
-0x80484db <main+11>     lea0x1c(%esp),%ebx
-0x80484df <main+15>     mov$0x0,%eax
-0x80484e4 <main+20>     mov$0x10,%edx
-0x80484e9 <main+25>     mov%ebx,%edi
-0x80484eb <main+27>     mov%edx,%ecx
-0x80484ed <main+29>     repstos%eax,%es:(%edi)
-0x80484ef <main+31>     movl$0x0,0x5c(%esp)
-0x80484f7 <main+39>     movl$0x80486b8,(%esp)
-0x80484fe <main+46>     call0x8048380<puts@plt>
-0x8048503 <main+51>     mov$0x80486df,%eax
-0x8048508 <main+56>     mov%eax,(%esp)
-0x804850b <main+59>     call0x8048360<printf@plt>
-0x8048510 <main+64>     mov0x804a020,%eax
-0x8048515 <main+69>     mov%eax,0x8(%esp)
-0x8048519 <main+73>     movl$0x100,0x4(%esp)
-0x8048521 <main+81>     movl$0x804a040,(%esp)
-0x8048528 <main+88>     call0x8048370<fgets@plt>
-0x804852d <main+93>     call0x8048464<verify_user_name>
-0x8048532 <main+98>     mov%eax,0x5c(%esp)
-0x8048536 <main+102>    cmpl$0x0,0x5c(%esp)
-0x804853b <main+107>    je0x8048550<main+128>
-0x804853d <main+109>    movl$0x80486f0,(%esp)
-0x8048544 <main+116>    call0x8048380<puts@plt>
-0x8048549 <main+121>    mov$0x1,%eax
-0x804854e <main+126>    jmp0x80485af<main+223>
-0x8048550 <main+128>    movl$0x804870d,(%esp)
-0x8048557 <main+135>    call0x8048380<puts@plt>
-0x804855c <main+140>    mov0x804a020,%eax
-0x8048561 <main+145>    mov%eax,0x8(%esp)
-0x8048565 <main+149>    movl$0x64,0x4(%esp)
-0x804856d <main+157>    lea0x1c(%esp),%eax
-0x8048571 <main+161>    mov%eax,(%esp)
-0x8048574 <main+164>    call0x8048370<fgets@plt>
-0x8048579 <main+169>    lea0x1c(%esp),%eax
-0x804857d <main+173>    mov%eax,(%esp)
-0x8048580 <main+176>    call0x80484a3<verify_user_pass>
-0x8048585 <main+181>    mov%eax,0x5c(%esp)
-0x8048589 <main+185>    cmpl$0x0,0x5c(%esp)
-0x804858e <main+190>    je0x8048597<main+199>
-0x8048590 <main+192>    cmpl$0x0,0x5c(%esp)
-0x8048595 <main+197>    je0x80485aa<main+218>
-0x8048597 <main+199>    movl$0x804871e,(%esp)
-0x804859e <main+206>    call0x8048380<puts@plt>
-0x80485a3 <main+211>    mov$0x1,%eax
-0x80485a8 <main+216>    jmp0x80485af<main+223>
-0x80485aa <main+218>    mov$0x0,%eax
-0x80485af <main+223>    lea-0x8(%ebp),%esp
-0x80485b2 <main+226>    pop%ebx
-0x80485b3 <main+227>    pop%edi
-0x80485b4 <main+228>    pop%ebp
-0x80485b5 <main+229>    ret
+08048464 <verify_user_name>:
+ 8048464:	55                   	push   ebp
+ 8048465:	89 e5                	mov    ebp,esp
+ 8048467:	57                   	push   edi
+ 8048468:	56                   	push   esi
+ 8048469:	83 ec 10             	sub    esp,0x10
+ 804846c:	c7 04 24 90 86 04 08 	mov    DWORD PTR [esp],0x8048690
+ 8048473:	e8 08 ff ff ff       	call   8048380 <puts@plt>
+ 8048478:	ba 40 a0 04 08       	mov    edx,0x804a040
+ 804847d:	b8 a8 86 04 08       	mov    eax,0x80486a8
+ 8048482:	b9 07 00 00 00       	mov    ecx,0x7
+ 8048487:	89 d6                	mov    esi,edx
+ 8048489:	89 c7                	mov    edi,eax
+ 804848b:	f3 a6                	repz cmps BYTE PTR ds:[esi],BYTE PTR es:[edi]
+ 804848d:	0f 97 c2             	seta   dl
+ 8048490:	0f 92 c0             	setb   al
+ 8048493:	89 d1                	mov    ecx,edx
+ 8048495:	28 c1                	sub    cl,al
+ 8048497:	89 c8                	mov    eax,ecx
+ 8048499:	0f be c0             	movsx  eax,al
+ 804849c:	83 c4 10             	add    esp,0x10
+ 804849f:	5e                   	pop    esi
+ 80484a0:	5f                   	pop    edi
+ 80484a1:	5d                   	pop    ebp
+ 80484a2:	c3                   	ret    
+
+080484a3 <verify_user_pass>:
+ 80484a3:	55                   	push   ebp
+ 80484a4:	89 e5                	mov    ebp,esp
+ 80484a6:	57                   	push   edi
+ 80484a7:	56                   	push   esi
+ 80484a8:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+ 80484ab:	89 c2                	mov    edx,eax
+ 80484ad:	b8 b0 86 04 08       	mov    eax,0x80486b0
+ 80484b2:	b9 05 00 00 00       	mov    ecx,0x5
+ 80484b7:	89 d6                	mov    esi,edx
+ 80484b9:	89 c7                	mov    edi,eax
+ 80484bb:	f3 a6                	repz cmps BYTE PTR ds:[esi],BYTE PTR es:[edi]
+ 80484bd:	0f 97 c2             	seta   dl
+ 80484c0:	0f 92 c0             	setb   al
+ 80484c3:	89 d1                	mov    ecx,edx
+ 80484c5:	28 c1                	sub    cl,al
+ 80484c7:	89 c8                	mov    eax,ecx
+ 80484c9:	0f be c0             	movsx  eax,al
+ 80484cc:	5e                   	pop    esi
+ 80484cd:	5f                   	pop    edi
+ 80484ce:	5d                   	pop    ebp
+ 80484cf:	c3                   	ret    
+
+080484d0 <main>:
+ 80484d0:	55                   	push   ebp
+ 80484d1:	89 e5                	mov    ebp,esp
+ 80484d3:	57                   	push   edi
+ 80484d4:	53                   	push   ebx
+ 80484d5:	83 e4 f0             	and    esp,0xfffffff0
+ 80484d8:	83 ec 60             	sub    esp,0x60
+ 80484db:	8d 5c 24 1c          	lea    ebx,[esp+0x1c]
+ 80484df:	b8 00 00 00 00       	mov    eax,0x0
+ 80484e4:	ba 10 00 00 00       	mov    edx,0x10
+ 80484e9:	89 df                	mov    edi,ebx
+ 80484eb:	89 d1                	mov    ecx,edx
+ 80484ed:	f3 ab                	rep stos DWORD PTR es:[edi],eax
+ 80484ef:	c7 44 24 5c 00 00 00 	mov    DWORD PTR [esp+0x5c],0x0
+ 80484f6:	00 
+ 80484f7:	c7 04 24 b8 86 04 08 	mov    DWORD PTR [esp],0x80486b8
+ 80484fe:	e8 7d fe ff ff       	call   8048380 <puts@plt>
+ 8048503:	b8 df 86 04 08       	mov    eax,0x80486df
+ 8048508:	89 04 24             	mov    DWORD PTR [esp],eax
+ 804850b:	e8 50 fe ff ff       	call   8048360 <printf@plt>
+ 8048510:	a1 20 a0 04 08       	mov    eax,ds:0x804a020
+ 8048515:	89 44 24 08          	mov    DWORD PTR [esp+0x8],eax
+ 8048519:	c7 44 24 04 00 01 00 	mov    DWORD PTR [esp+0x4],0x100
+ 8048520:	00 
+ 8048521:	c7 04 24 40 a0 04 08 	mov    DWORD PTR [esp],0x804a040
+ 8048528:	e8 43 fe ff ff       	call   8048370 <fgets@plt>
+ 804852d:	e8 32 ff ff ff       	call   8048464 <verify_user_name>
+ 8048532:	89 44 24 5c          	mov    DWORD PTR [esp+0x5c],eax
+ 8048536:	83 7c 24 5c 00       	cmp    DWORD PTR [esp+0x5c],0x0
+ 804853b:	74 13                	je     8048550 <main+0x80>
+ 804853d:	c7 04 24 f0 86 04 08 	mov    DWORD PTR [esp],0x80486f0
+ 8048544:	e8 37 fe ff ff       	call   8048380 <puts@plt>
+ 8048549:	b8 01 00 00 00       	mov    eax,0x1
+ 804854e:	eb 5f                	jmp    80485af <main+0xdf>
+ 8048550:	c7 04 24 0d 87 04 08 	mov    DWORD PTR [esp],0x804870d
+ 8048557:	e8 24 fe ff ff       	call   8048380 <puts@plt>
+ 804855c:	a1 20 a0 04 08       	mov    eax,ds:0x804a020
+ 8048561:	89 44 24 08          	mov    DWORD PTR [esp+0x8],eax
+ 8048565:	c7 44 24 04 64 00 00 	mov    DWORD PTR [esp+0x4],0x64
+ 804856c:	00 
+ 804856d:	8d 44 24 1c          	lea    eax,[esp+0x1c]
+ 8048571:	89 04 24             	mov    DWORD PTR [esp],eax
+ 8048574:	e8 f7 fd ff ff       	call   8048370 <fgets@plt>
+ 8048579:	8d 44 24 1c          	lea    eax,[esp+0x1c]
+ 804857d:	89 04 24             	mov    DWORD PTR [esp],eax
+ 8048580:	e8 1e ff ff ff       	call   80484a3 <verify_user_pass>
+ 8048585:	89 44 24 5c          	mov    DWORD PTR [esp+0x5c],eax
+ 8048589:	83 7c 24 5c 00       	cmp    DWORD PTR [esp+0x5c],0x0
+ 804858e:	74 07                	je     8048597 <main+0xc7>
+ 8048590:	83 7c 24 5c 00       	cmp    DWORD PTR [esp+0x5c],0x0
+ 8048595:	74 13                	je     80485aa <main+0xda>
+ 8048597:	c7 04 24 1e 87 04 08 	mov    DWORD PTR [esp],0x804871e
+ 804859e:	e8 dd fd ff ff       	call   8048380 <puts@plt>
+ 80485a3:	b8 01 00 00 00       	mov    eax,0x1
+ 80485a8:	eb 05                	jmp    80485af <main+0xdf>
+ 80485aa:	b8 00 00 00 00       	mov    eax,0x0
+ 80485af:	8d 65 f8             	lea    esp,[ebp-0x8]
+ 80485b2:	5b                   	pop    ebx
+ 80485b3:	5f                   	pop    edi
+ 80485b4:	5d                   	pop    ebp
+ 80485b5:	c3                   	ret    
+ 80485b6:	90                   	nop
+ 80485b7:	90                   	nop
+ 80485b8:	90                   	nop
+ 80485b9:	90                   	nop
+ 80485ba:	90                   	nop
+ 80485bb:	90                   	nop
+ 80485bc:	90                   	nop
+ 80485bd:	90                   	nop
+ 80485be:	90                   	nop
+ 80485bf:	90                   	nop

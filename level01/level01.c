@@ -25,15 +25,12 @@ int main() {
     puts("********* ADMIN LOGIN PROMPT *********");
     printf("Enter Username: ");
     fgets(username, sizeof(username), stdin);
-    int name_verified = verify_user_name(username);
-    if (name_verified == 0) {
+    int ret = verify_user_name(username);
+    if (ret == 0) {
         printf("Enter Password: ");
         fgets(password, sizeof(password), stdin);
-        int pass_verified = verify_user_pass(password);
-        if (pass_verified != 0)
-            puts("nope, incorrect password...\n");
-    } else {
-        puts("nope, incorrect username...\n");
+        ret = verify_user_pass(password);
     }
-    return name_verified;
+    puts("nope, incorrect username...\n");
+    return 1;
 }

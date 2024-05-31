@@ -1,12 +1,12 @@
-### Level00
+### level00
 
-Le premier exercice est plutôt simple, après accéder à la décompilation nous observons cette ligne.
+Le premier exercice est plutôt simple, après avoir reconstitué le code source nous observons cette ligne.
 
 ```c
 if (password != 5276)
 ```
 
-Nous allons donc insérer le mdp 5276 afin d'accéder au mot de passe.
+Nous allons donc insérer le password 5276 afin d'accéder au mot de passe.
 
 ```bash
 level00@OverRide:~$ (python -c 'print "5276"' && python -c 'print "cat /home/users/level01/.pass"') | cat  | ./level00 
