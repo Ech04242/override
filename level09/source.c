@@ -10,7 +10,6 @@ typedef struct  s_msg {
 
 void secret_backdoor() {
     char s[128];
-
     fgets(s, 128, stdin);
     system(s);
 }
@@ -31,7 +30,7 @@ void set_username(t_msg *msg) {
     s[128] = 0;
     for (int i = 0; i <= 40 && s[i]; i++)
         msg->username[i] = s[i];
-    printf(">: Welcome, %s", msg->username + 140);
+    printf(">: Welcome, %s", msg->username);
 }
 
 void handle_msg() {
