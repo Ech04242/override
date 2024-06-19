@@ -1,4 +1,4 @@
-### level05
+### level06
 
 Cet exercice est assez simple une fois le code source recomposé.
 Il demande un login et le serial number associé, dans le code il va calculer le serial number pour vérifier s'il est bon.
