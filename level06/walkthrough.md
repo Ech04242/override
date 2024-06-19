@@ -12,5 +12,5 @@ Il ne reste plus qu'à passer ces arguments à level06 et exécuter : cat /home/
 Voici une commande qui fait tout cela :
 
 ```bash
-(python -c 'print "username"'; python -c 'print "6234463"'; python -c 'print "cat /home/users/level07/.pass"'; cat) | ./level06
+(python -c 'print "username"'; python -c 'print "6234463"'; python -c 'print "cat /home/users/level07/.pass"') | ./level06
 ```

